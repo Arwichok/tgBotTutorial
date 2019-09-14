@@ -82,3 +82,7 @@ from handlers import (
 
 executor.start_polling()
 ```
+
+## Запуск бота
+
+    $ python bot
