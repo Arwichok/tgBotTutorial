@@ -1,8 +1,8 @@
 # Echobot
 
-В этом розделе мы созздадим элементарного эхо бота. создадим файл `echo.py` и запишем туда этот код:
+В этом розделе мы создадим элементарного эхо бота. создадим файл `echo.py` и запишем туда этот код:
 
-##### echo.py
+#### `echo.py`
 ```py
 import logging
 from aiogram import Bot, Dispatcher, executor
@@ -22,9 +22,9 @@ async def echo(msg):
 executor.start_polling(dp, skip_updates=True)
 ```
 
-В переменную BOT_TOKEN вставим токен бота
+В переменную BOT_TOKEN вставим токен бота.
 
-> Если у вас заблокирован https://api.telegram.org/ воспользуйтесь прокси добавив его в вызов `Bot(BOT_TOKEN, proxy='http://address:port')`, подробней далее
+> Если у вас заблокирован https://api.telegram.org/ воспользуйтесь прокси добавив его в вызов `Bot(BOT_TOKEN, proxy='http://address:port')`, подробней будет далее в туториале
 
 
 ### Запускаем бота
@@ -43,6 +43,7 @@ executor.start_polling(dp, skip_updates=True)
 
 
 Устанавливаем уровень логирования, что-бы видеть что происходит в программе через консоль:
+
 ```py
 logging.basicConfig(level=logging.INFO)
 ```
@@ -70,6 +71,7 @@ dp.register_message_handler(echo)
 ```
 
 Запускаем бота с пропуском всех сообщений что были до запуска:
+
 ```py
 executor.start_polling(dp, skip_updates=True)
 ```

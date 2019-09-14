@@ -48,9 +48,17 @@
 
     (venv) $ pip install git+https://github.com/aiogram/aiogram.git
 
-Автор рекомендует для скорости работы установить `uvjson` и `ujson`:
+Автор рекомендует для скорости работы установить `uvloop` и `ujson`:
 
-    (venv) $ pip install -U uvjson ujson
+    (venv) $ pip install -U uvloop ujson
+
+
+Создадим и запишемм в файл `requirements.txt`:
+```
+aiogram<3
+uvloop
+ujson
+```
 
 #### Создаём бота в  [@BotFather](https://t.me/BotFather)
 
@@ -75,7 +83,7 @@
 
 Подробней почитать о создании ботов (en) https://core.telegram.org/bots/api
 
-~[Документация по aiogram](https://aiogram.readthedocs.io/en/latest/)~ )
+~~[Документация по aiogram](https://aiogram.readthedocs.io/en/latest/)~~ )
 
 Я в телеграмме [@Arwichok](https://t.me/arwichok)
 
