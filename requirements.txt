@@ -2,3 +2,4 @@ aiogram<3
 uvloop
 ujson
 python-dotenv
+aiohttp_socks
