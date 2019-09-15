@@ -1,6 +1,7 @@
 from misc import executor
 from handlers import (
-    messages
+    messages,
+    commands,
 )
 
 
