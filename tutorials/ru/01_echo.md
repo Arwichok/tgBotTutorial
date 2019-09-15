@@ -76,4 +76,4 @@ dp.register_message_handler(echo)
 executor.start_polling(dp, skip_updates=True)
 ```
 
-[Предыдущая часть](00_welcome) | [Следующая часть](02_project)
+[Предыдущая часть](00_welcome.md) | [Следующая часть](02_project.md)
