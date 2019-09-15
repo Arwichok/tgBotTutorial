@@ -1,32 +1,38 @@
-# Фильтры обновлений
+# Filters
+
 
 Фильтры помогают регистрировать функции на разные типы получаемых сообщений к примеру на текст и комманду отвечают разные функции. Здесь расмотрим встроенные фильтры и создадим свой.
 
-## Contents
+# Contents
 
+- [Filters](#filters)
+- [Contents](#contents)
 - [Text](#text)
-- [ID](#id)
-- [RegExp](#RegExp)
-- [Tags](#Tags)
-- [AdminFilter](#adminfilter)
-- [Content Types](#content-types)
-- [Commands](#Commands)
+  - [ID](#id)
+  - [RegExp](#regexp)
+  - [Tags](#tags)
+- [Commands](#commands)
   - [Command Classes](#command-classes)
   - [Commands prefix](#commands-prefix)
-  - [Regexp command](#regexp-commands)
+  - [RegExp Commands](#regexp-commands)
   - [DeepLink](#deeplink)
-- [MyFilter](#my-filter)
 - [Two registrators](#two-registrators)
+- [MyFilter](#myfilter)
+  - [Castom](#castom)
+  - [Factory](#factory)
+  - [Pass data](#pass-data)
 
 
->`echo` в коде мы удалим, так как функции проверяются по порядку очереди регистрации, если хендлер зарегистрирован без аргументов первым, то все сообщения будут отправлятся в него, если последним, тогда будет на всё что не отвечает фильтрам в предидущих.
+
+
+>`echo` в коде мы удалим, так как функции проверяются по порядку очереди регистрации, если хендлер зарегистрирован без аргументов первым, то все сообщения будут отправляться в него, если последним, тогда будет на всё что не отвечает фильтрам в предыдущих.
 
 Так же для типизации будем использовать типы от либы.
 
 
-## Text
-#### bot/hanlders/messages.py
+# Text
 ```py
+# bot/hanlders/messages.py
 from aiogram import types as ats
 
 from misc import dp
@@ -79,13 +85,14 @@ async def hashtag_test(msg: ats.Message):
 ```
 
 
-## Commands
+# Commands
 
 Для команд у нас будет `commands.py`, создадим файл для этого и добавим в импорт `bot/__main__.py`
 
 Комманды будем писать в отдельном модуле `commands`    
 Создадим `bot/handlers/commands.py`
 
+add `commands`
 
 ```py
 # `bot/__main__.py`
@@ -96,27 +103,56 @@ from handlers import (
 ```
 
 ```py
-# `bot/hanlders/commands.py`
-from aiogram import types as ats
-
-from misc import dp
-
-
-@dp.message_handler(commands=['start'], commands_prefix='!/')
-async def cmd_start(msg: ats.Message):
-    await msg.answer('Hello you send /start or !start')
+@dp.message_handler(commands=['help'])
+async def start(msg: ats.Message):
+    await msg.answer('Hello i TestBot')
 ```
 
-Комманды можно вводить несколько на один хендлер.
+## Command Classes
 
-По умолчанию `commands_prefix='/'`, но вы можете изменить если комманды могут конфликтовать с другими ботами в чатах или по желанию.
+```py
+from aiogram import filters
+...
+@dp.message_handler(filters.CommandSettings())
+async def start(msg: ats.Message):
+    await msg.answer('Settings')
+```
 
+`start` == **CommandStart**  
+`help` == **CommandHelp**  
+`settings` == **CommandSettings**  
+`privacy` == **CommandPrivacy**  
 
+## Commands prefix
 
+```py
+@dp.message(commands=['test'], commands_prefix='/!')
+async def help(msg: ats.Message):
+    # answer when message is /test or !test
+    await msg.answer('Test')
+```
 
-## Two registrators
+## RegExp Commands
 
-Если вы хотите зарегистрировать один хендлер на несколько разных фильтров тогда нужно регистрировать его два раза, так как если сделать `(commands=['some'], text='some')`, от так никода не сработает, для решения этой проблемы можем использовать:
+```py
+@dp.message_handler(regexp_commands=[r'r_(\d+)'])
+async def r_(msg: ats.Message, regexp_command):
+    await msg.answer(f'ref is {regexp_command[1]}')
+```
+
+## DeepLink
+Теперь можно делать ссылки типа    
+https://t.me/MyEverBestBot?start=u34
+
+```py
+@dp.message_handler(filters.CommandStart(re.compile(r'u(\d+)')))
+async def cmd_start(msg: ats.Message, deep_link):
+    await msg.answer(f'Deep link u is {deep_link[1]}')
+```
+
+# Two registrators
+
+Регистрация двух взаимоисключающих фильтров на один хендлер
 
 ```py
 @dp.message_handler(text='some')
@@ -126,8 +162,45 @@ async def some_start(msg: ats.Message):
 ```
 
 
-# TODO 
-- Создание простых функций фильтров
-  - передача True
-  - Передача Dict
-- создание фильтра от фабрики фильтров
+# MyFilter
+
+## Castom
+```py
+@dp.message_handler(lambda m: m.text == 'foo')
+```
+
+## Factory
+
+```py
+from aiogram.filter import BoundFilter
+from aiogram import types as ats
+
+from misc import bot, dp
+
+class MyFilter(BoundFilter):
+    key = 'is_admin'
+
+    def __init__(self, is_admin):
+        self.is_admin = is_admin
+    
+    async def check(self, msg: ats.Message):
+        member = await bot.get_chat_member(
+            msg.chat.id,
+            msg.from_user.id)
+        return member.is_admin()
+
+dp.filters_factory.bind(MyFilter)
+```
+
+## Pass data
+
+```py
+async def my_filter(msg: ats.Message):
+    # do something here
+    return {'foo': 'bar'}
+
+
+@dp.message_handler(my_filter)
+async def test_my_filter(msg: ats.Message, foo):
+    await msg.answer(f'foo is {foo}')
+```
