@@ -88,3 +88,6 @@ ujson
 Я в телеграмме [@Arwichok](https://t.me/arwichok)
 
 Русский чат по aiogram [@aiogram_ru](https://t.me/aiogram_ru)
+
+
+[Следующая часть](01_echo)

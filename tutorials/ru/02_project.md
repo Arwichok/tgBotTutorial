@@ -86,3 +86,7 @@ executor.start_polling()
 ## Запуск бота
 
     $ python bot
+
+
+
+[Предыдущая часть](01_echo) | [Следующая часть](03_proxy)
