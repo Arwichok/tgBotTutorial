@@ -7,3 +7,4 @@
 - [Project](/tutorials/ru/02_project.md)
 - [Proxy](/tutorials/ru/03_proxy.md)
 - [Filters](/tutorials/ru/04_filters.md)
+- [Formatting](/tutorials/ru/05_formatting.md)
