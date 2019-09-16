@@ -190,6 +190,12 @@ class MyFilter(BoundFilter):
         return member.is_admin()
 
 dp.filters_factory.bind(MyFilter)
+
+...
+
+@dp.message_handler(is_admin=True)
+async def is_admin(msg: ats.Message):
+    await msg.answer('Answer if check() return True')
 ```
 
 ## Pass data
