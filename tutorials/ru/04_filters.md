@@ -172,30 +172,30 @@ async def some_start(msg: ats.Message):
 ## Factory
 
 ```py
-from aiogram.filter import BoundFilter
-from aiogram import types as ats
+from aiogram.dispatcher.filters import BoundFilter
 
-from misc import bot, dp
+from misc import dp
 
-class MyFilter(BoundFilter):
-    key = 'is_admin'
 
-    def __init__(self, is_admin):
-        self.is_admin = is_admin
-    
+class IsReply(BoundFilter):
+    key = 'is_reply'
+
+    def __init__(self, is_reply):
+        self.is_reply = is_reply
+
     async def check(self, msg: ats.Message):
-        member = await bot.get_chat_member(
-            msg.chat.id,
-            msg.from_user.id)
-        return member.is_admin()
+        if msg.reply_to_message:
+            return {'reply': msg.reply_to_message}
 
-dp.filters_factory.bind(MyFilter)
+
+dp.filters_factory.bind(IsReply)
+
 
 ...
 
-@dp.message_handler(is_admin=True)
-async def is_admin(msg: ats.Message):
-    await msg.answer('Answer if check() return True')
+@dp.message_handler(is_reply=True)
+async def test_is_reply(msg: ats.Message, reply):
+    await msg.answer(f'Reply to {reply.text}')
 ```
 
 ## Pass data
