@@ -172,10 +172,10 @@ async def some_start(msg: ats.Message):
 ## Factory
 
 ```py
+# bot/filters.py
 from aiogram.dispatcher.filters import BoundFilter
 
-from misc import dp
-
+...
 
 class IsReply(BoundFilter):
     key = 'is_reply'
@@ -189,8 +189,9 @@ class IsReply(BoundFilter):
 
 
 dp.filters_factory.bind(IsReply)
-
-
+```
+```py
+# bot/handlers/message.py
 ...
 
 @dp.message_handler(is_reply=True)
