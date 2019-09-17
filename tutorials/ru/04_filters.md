@@ -212,4 +212,5 @@ async def test_my_filter(msg: ats.Message, foo):
     await msg.answer(f'foo is {foo}')
 ```
 
-[Предыдущая часть](03_proxy.md)
+
+[Предыдущая часть](03_proxy.md) | [Следующая часть](05_formatting.md)

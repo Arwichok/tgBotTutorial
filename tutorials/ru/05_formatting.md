@@ -44,3 +44,7 @@ async def md_test(msg: ats.Message):
  Mention             | `link`   | `hlink`   | `('Username', 'tg://user?=12345')`
  `Inline-code`       | `pre`    | `hpre`    | `('Inline-code')`
  ```Code```          | `code`   | `hcode`   | `('Code')`
+
+
+
+[Предыдущая часть](04_filters.md)
