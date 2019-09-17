@@ -171,10 +171,19 @@ async def some_start(msg: ats.Message):
 
 ## Factory
 
+
+Импортировать фильтры перед хендлерами
+```py
+# bot/__main__.py
+...
+import filters
+from handlers import(
+    ...
+```
+
 ```py
 # bot/filters.py
 from aiogram.dispatcher.filters import BoundFilter
-
 ...
 
 class IsReply(BoundFilter):
@@ -190,6 +199,7 @@ class IsReply(BoundFilter):
 
 dp.filters_factory.bind(IsReply)
 ```
+
 ```py
 # bot/handlers/message.py
 ...
