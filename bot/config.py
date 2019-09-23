@@ -7,6 +7,7 @@ load_dotenv()
 
 BOT_TOKEN = getenv('BOT_TOKEN')
 SKIP_UPDATES = bool(getenv('SKIP_UPDATES', True))
+BOT_OWNER = int(getenv('BOT_OWNER'), 0)
 
 PROXY_URL = getenv('PROXY_URL')
 PROXY_PASS = getenv('PROXY_PASS', '')

@@ -59,7 +59,12 @@ async def two(msg: ats.Message):
 Для проверки id от получателя используем `user_id` и `chat_id`:
 
 ```py
-@dp.message_handler(text='admin', user_id=(123456,))
+# config.py
+BOT_OWNER = int(getenv('BOT_OWNER'), 0)
+```
+
+```py
+@dp.message_handler(text='admin', chat_id=BOT_OWNER))
 async def user_id_test(msg: ats.Message):
     # Отправит сообщение только пользователю с id 123456
     await msg.answer('Hello Admin')
