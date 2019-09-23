@@ -66,7 +66,7 @@ BOT_OWNER = int(getenv('BOT_OWNER'), 0)
 ```py
 @dp.message_handler(text='admin', chat_id=BOT_OWNER))
 async def user_id_test(msg: ats.Message):
-    # Отправит сообщение только пользователю с id 123456
+    # Отправит сообщение только пользователю с id установленным в конфигах
     await msg.answer('Hello Admin')
 ```
 
