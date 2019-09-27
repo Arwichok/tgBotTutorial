@@ -21,7 +21,7 @@
   - [Castom](#castom)
   - [Factory](#factory)
   - [Pass data](#pass-data)
-- [Builtins table and types](#builtins-table-and-types)
+- [Types builtin filters](#types-builtin-filters)
 
 
 
@@ -229,7 +229,7 @@ async def test_my_filter(msg: ats.Message, foo):
 ```
 
 
-# Builtins table and types
+# Types builtin filters
 
 | Filter | Type |
 |-|-|
