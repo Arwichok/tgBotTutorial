@@ -38,12 +38,12 @@ async def md_test(msg: ats.Message):
 
 | Type | Markdown | HTML | Example |
 |-|-|-|-|
- **Bold**            | `bold`   | `hbold`   | `('Bold')`
- _Italic_            | `italic` | `hitalic` | `('Italic')`
- [URL](https://t.me) | `link`   | `hlink`   | `('URL', 'https://t.me')`
- Mention             | `link`   | `hlink`   | `('Username', 'tg://user?=12345')`
- `Inline-code`       | `pre`    | `hpre`    | `('Inline-code')`
- ```Code```          | `code`   | `hcode`   | `('Code')`
+|**Bold**          |`bold`  |`hbold`  |`('Bold')`|
+|_Italic_          |`italic`|`hitalic`|`('Italic')`|
+|[URL](http://t.me)|`link`  |`hlink`  |`('URL', 'http://t.me')`|
+|Mention           |`link`  |`hlink`  |`('Username', 'tg://user?=12345')`|
+|`Inline-code`     |`pre`   |`hpre`   |`('Inline-code')`|
+|```Code```        |`code`  |`hcode`  |`('Code')` |
 
 
 

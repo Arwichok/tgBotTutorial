@@ -60,7 +60,7 @@ async def two(msg: ats.Message):
 
 ```py
 # config.py
-BOT_OWNER = int(getenv('BOT_OWNER'), 0)
+BOT_OWNER = int(getenv('BOT_OWNER') or 0)
 ```
 
 ```py

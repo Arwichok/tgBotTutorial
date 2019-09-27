@@ -39,7 +39,7 @@ import dotenv
 dotenv.load_dotenv()
 
 BOT_TOKEN = getenv('BOT_TOKEN')
-SKIP_UPDATES = bool(getenv('SKIP_UPDATES', True))
+SKIP_UPDATES = bool(getenv('SKIP_UPDATES') or True)
 
 PROXY_URL = getenv('PROXY_URL')
 ```
