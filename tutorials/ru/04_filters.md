@@ -21,6 +21,7 @@
   - [Castom](#castom)
   - [Factory](#factory)
   - [Pass data](#pass-data)
+- [Builtins table and types](#builtins-table-and-types)
 
 
 
@@ -226,6 +227,30 @@ async def my_filter(msg: ats.Message):
 async def test_my_filter(msg: ats.Message, foo):
     await msg.answer(f'foo is {foo}')
 ```
+
+
+# Builtins table and types
+
+| Filter | Type |
+|-|-|
+| commands | list, str |
+| prefixes | list, str |
+| ignore_case | bool |
+| ignore_mention | bool |
+| text | list, str |
+| text_contains | list, str |
+| text_startswith | list, str |
+| text_endswith | list, str |
+| hashtag | list, str |
+| cashtag | list, str |
+| regexp | re.Pattern |
+| regexp_commands | re.Pattern |
+| content_types | list |
+| user_id | int, str, List[str, int] |
+| user_id | int, str, List[str, int] |
+| is_chat_admin | bool, int, str, List[int, str] |
+
+
 
 
 [Предыдущая часть](03_proxy.md) | [Следующая часть](05_formatting.md)
